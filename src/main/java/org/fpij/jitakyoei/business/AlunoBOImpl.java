@@ -10,7 +10,7 @@ import org.fpij.jitakyoei.util.FiliadoID;
 import org.fpij.jitakyoei.view.AppView;
 
 public class AlunoBOImpl implements AlunoBO {
-	private static AlunoValidator alunoValidator;
+	private static AlunoValidator alunoValidator = new AlunoValidator();
 	private static DAO<Aluno> dao = new DAOImpl<Aluno>(Aluno.class, alunoValidator, true);
 	private AppView view;
 
