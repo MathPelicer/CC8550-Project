@@ -6,8 +6,10 @@ import org.fpij.jitakyoei.model.beans.Filiado;
 public class AlunoValidator implements Validator<Aluno> {
 	public boolean validate(Aluno obj) {
 		Filiado filiado = obj.getFiliado();
-		String filiadoCpf = filiado.getCpf();
-		if (filiadoCpf.isBlank()) {
+
+		FiliadoValidator filiadoValidator = new FiliadoValidator();
+		boolean isFiliadoValid = filiadoValidator.validate(filiado);
+		if (!isFiliadoValid) {
 			return false;
 		}
 		return true;
