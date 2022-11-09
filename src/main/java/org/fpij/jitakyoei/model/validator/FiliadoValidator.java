@@ -19,9 +19,13 @@ public class FiliadoValidator implements Validator<Filiado> {
         String filiadoEmail = obj.getEmail();
         String filiadoCpf = obj.getCpf();
         String filiadoObservacoes = obj.getObservacoes();
-        Rg filiadoRg = obj.getRg();
-        Endereco filiadoEndereco = obj.getEndereco();
         List<Faixa> filiadoFaixas = obj.getFaixas();
+
+        RgValidator rgValidator = new RgValidator();
+        boolean isRgValid = rgValidator.validate(obj.getRg());
+        
+        EnderecoValidator enderecoValidator = new EnderecoValidator();
+        boolean isEnderecoValid = enderecoValidator.validate(obj.getEndereco())
 
         if (filiadoId.toString().isBlank() ||
                 filiadoNome.isBlank() ||
@@ -32,7 +36,9 @@ public class FiliadoValidator implements Validator<Filiado> {
                 filiadoEmail.isBlank() ||
                 filiadoCpf.isBlank() ||
                 filiadoObservacoes.isBlank() ||
-                filiadoFaixas.isEmpty()) {
+                filiadoFaixas.isEmpty() ||
+                !isRgValid ||
+                !isEnderecoValid) {
             return false;
         }
         return true;
