@@ -23,12 +23,17 @@ public class AlunoBOImpl implements AlunoBO {
 	}
 
 	@Override
-	public void createAluno(Aluno aluno) throws Exception {
+	public boolean createAluno(Aluno aluno) throws Exception {
 		System.out.println("AlunoBOImpl.createAluno()");
 		try {
 			aluno.getFiliado().setId(FiliadoID.getNextID());
-			dao.save(aluno);
+			boolean isSaved = dao.save(aluno);
+			if (isSaved) {
+				fireModelChangeEvent(aluno);
+				return true;
+			}
 			fireModelChangeEvent(aluno);
+			return false;
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Ocorreu um erro ao cadastrar o aluno!"
 					+ " Verifique se todos os dados foram preenchidos corretamente.");
