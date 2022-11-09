@@ -23,14 +23,14 @@ public class FiliadoValidator implements Validator<Filiado> {
         Endereco filiadoEndereco = obj.getEndereco();
         List<Faixa> filiadoFaixas = obj.getFaixas();
 
-        if (filiadoCpf.isBlank() ||
-                filiadoId.toString().isBlank() ||
+        if (filiadoId.toString().isBlank() ||
                 filiadoNome.isBlank() ||
-                filiadoNascimento.toString().isBlank() ||
-                filiadoCadastro.toString().isBlank() ||
+                filiadoNascimento == null || filiadoNascimento.toString().isBlank() ||
+                filiadoCadastro == null || filiadoCadastro.toString().isBlank() ||
                 filiadoTelefone1.isBlank() ||
                 filiadoTelefone2.isBlank() ||
                 filiadoEmail.isBlank() ||
+                filiadoCpf.isBlank() ||
                 filiadoObservacoes.isBlank() ||
                 filiadoFaixas.isEmpty()) {
             return false;
