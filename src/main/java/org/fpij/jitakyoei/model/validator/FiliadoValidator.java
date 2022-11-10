@@ -23,9 +23,9 @@ public class FiliadoValidator implements Validator<Filiado> {
 
         RgValidator rgValidator = new RgValidator();
         boolean isRgValid = rgValidator.validate(obj.getRg());
-        
+
         EnderecoValidator enderecoValidator = new EnderecoValidator();
-        boolean isEnderecoValid = enderecoValidator.validate(obj.getEndereco())
+        boolean isEnderecoValid = enderecoValidator.validate(obj.getEndereco());
 
         if (filiadoId.toString().isBlank() ||
                 filiadoNome.isBlank() ||

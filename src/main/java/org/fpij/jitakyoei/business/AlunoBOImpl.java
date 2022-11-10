@@ -1,5 +1,6 @@
 package org.fpij.jitakyoei.business;
 
+import java.util.Date;
 import java.util.List;
 
 import org.fpij.jitakyoei.model.beans.Aluno;
@@ -27,6 +28,7 @@ public class AlunoBOImpl implements AlunoBO {
 		System.out.println("AlunoBOImpl.createAluno()");
 		try {
 			aluno.getFiliado().setId(FiliadoID.getNextID());
+			aluno.getFiliado().setDataCadastro(new Date());
 			boolean isSaved = dao.save(aluno);
 			if (isSaved) {
 				fireModelChangeEvent(aluno);
