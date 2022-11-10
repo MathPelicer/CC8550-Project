@@ -50,8 +50,9 @@ public class AlunoCadastrarView implements ViewComponent {
 				boolean isCreated = facade.createAluno(aluno);
 				if (isCreated) {
 					JOptionPane.showMessageDialog(gui, "Aluno cadastrado com sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(gui, "Aluno não foi cadastrado!");
 				}
-				JOptionPane.showMessageDialog(gui, "Aluno não foi cadastrado!");
 				parent.removeTabPanel(gui);
 			} catch (Exception e) {
 				e.printStackTrace();
