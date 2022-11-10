@@ -1,15 +1,18 @@
 package org.fpij.jitakyoei.business;
 
+import java.util.Date;
 import java.util.List;
 
 import org.fpij.jitakyoei.model.beans.Aluno;
 import org.fpij.jitakyoei.model.dao.DAO;
 import org.fpij.jitakyoei.model.dao.DAOImpl;
+import org.fpij.jitakyoei.model.validator.AlunoValidator;
 import org.fpij.jitakyoei.util.FiliadoID;
 import org.fpij.jitakyoei.view.AppView;
 
 public class AlunoBOImpl implements AlunoBO {
-	private static DAO<Aluno> dao = new DAOImpl<Aluno>(Aluno.class);
+	private static AlunoValidator alunoValidator = new AlunoValidator();
+	private static DAO<Aluno> dao = new DAOImpl<Aluno>(Aluno.class, alunoValidator, true);
 	private AppView view;
 
 	public AlunoBOImpl(AppView view) {
@@ -21,12 +24,18 @@ public class AlunoBOImpl implements AlunoBO {
 	}
 
 	@Override
-	public void createAluno(Aluno aluno) throws Exception {
+	public boolean createAluno(Aluno aluno) throws Exception {
 		System.out.println("AlunoBOImpl.createAluno()");
 		try {
 			aluno.getFiliado().setId(FiliadoID.getNextID());
-			dao.save(aluno);
+			aluno.getFiliado().setDataCadastro(new Date());
+			boolean isSaved = dao.save(aluno);
+			if (isSaved) {
+				fireModelChangeEvent(aluno);
+				return true;
+			}
 			fireModelChangeEvent(aluno);
+			return false;
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Ocorreu um erro ao cadastrar o aluno!"
 					+ " Verifique se todos os dados foram preenchidos corretamente.");

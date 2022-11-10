@@ -39,13 +39,15 @@ public class AppFacadeImpl implements AppFacade {
 	}
 
 	@Override
-	public void createAluno(Aluno aluno) {
+	public boolean createAluno(Aluno aluno) {
 		System.out.println("AppFacadeImpl.createAluno()");
 		try {
-			alunoBO.createAluno(aluno);
+			boolean isCreated = alunoBO.createAluno(aluno);
+			return isCreated;
 		} catch (Exception e) {
 			reportException(e);
 		}
+		return false;
 	}
 
 	@Override
