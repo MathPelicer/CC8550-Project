@@ -2,6 +2,7 @@ package org.fpij.jitakyoei.view.forms;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComboBox;
@@ -55,7 +56,7 @@ public class ProfessorForm {
 	}
 
 	private void populaEntidadeCombo() {
-		JComboBox entidadeCombo = professorPanel.getEntidade();
+		JComboBox<Entidade> entidadeCombo = professorPanel.getEntidade();
 		List<Entidade> resultEntidades = new DAOImpl<Entidade>(Entidade.class).list();
 		for (Entidade e : resultEntidades) {
 			entidadeCombo.addItem(e);
@@ -68,7 +69,9 @@ public class ProfessorForm {
 	}
 
 	public List<Entidade> getEntidadesList() {
-		return professor.getEntidades();
+		List<Entidade> listEntidade = new ArrayList<Entidade>();
+		listEntidade.add((Entidade) professorPanel.getEntidade().getSelectedItem());
+		return listEntidade;
 	}
 
 	public void setEntidadesList(List<Entidade> entidadesList) {

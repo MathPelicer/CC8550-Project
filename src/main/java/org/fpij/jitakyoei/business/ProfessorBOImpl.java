@@ -1,17 +1,20 @@
 package org.fpij.jitakyoei.business;
 
+import java.util.Date;
 import java.util.List;
 
 import org.fpij.jitakyoei.model.beans.Professor;
 import org.fpij.jitakyoei.model.dao.DAO;
 import org.fpij.jitakyoei.model.dao.DAOImpl;
+import org.fpij.jitakyoei.model.validator.ProfessorValidator;
 import org.fpij.jitakyoei.util.FiliadoID;
 import org.fpij.jitakyoei.view.AppView;
 
 public class ProfessorBOImpl implements ProfessorBO {
 
 	private AppView view;
-	private static DAO<Professor> dao = new DAOImpl<Professor>(Professor.class);
+	private static ProfessorValidator professorValidator = new ProfessorValidator();
+	private static DAO<Professor> dao = new DAOImpl<Professor>(Professor.class, professorValidator, true);
 
 	public ProfessorBOImpl(AppView view) {
 		this.view = view;
@@ -22,11 +25,13 @@ public class ProfessorBOImpl implements ProfessorBO {
 	}
 
 	@Override
-	public void createProfessor(Professor professor) throws Exception {
+	public boolean createProfessor(Professor professor) throws Exception {
 		try {
 			professor.getFiliado().setId(FiliadoID.getNextID());
-			dao.save(professor);
+			professor.getFiliado().setDataCadastro(new Date());
+			boolean isSaved = dao.save(professor);
 			fireModelChangeEvent(professor);
+			return isSaved;
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Ocorreu um erro ao cadastrar o professor!"
 					+ " Verifique se todos os dados foram preenchidos corretamente.");

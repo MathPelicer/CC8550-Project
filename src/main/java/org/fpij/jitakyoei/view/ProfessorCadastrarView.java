@@ -55,10 +55,13 @@ public class ProfessorCadastrarView implements ViewComponent {
 				for (Entidade entidade : entidades) {
 					relacionamentos.add(new ProfessorEntidade(professor, entidade));
 				}
-				facade.createProfessor(professor);
-				facade.createProfessorEntidade(relacionamentos);
-				JOptionPane.showMessageDialog(gui, "Professor cadastrado com sucesso!");
-				parent.removeTabPanel(gui);
+				boolean isProfessorCreated = facade.createProfessor(professor);
+				if (isProfessorCreated) {
+					facade.createProfessorEntidade(relacionamentos);
+					JOptionPane.showMessageDialog(gui, "Professor cadastrado com sucesso!");
+					parent.removeTabPanel(gui);
+				}
+				JOptionPane.showMessageDialog(gui, "Houve um problema ao cadastrar o professor");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
