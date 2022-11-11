@@ -3,10 +3,8 @@ package org.fpij.jitakyoei.model.validator;
 import java.util.Date;
 import java.util.List;
 
-import org.fpij.jitakyoei.model.beans.Endereco;
 import org.fpij.jitakyoei.model.beans.Faixa;
 import org.fpij.jitakyoei.model.beans.Filiado;
-import org.fpij.jitakyoei.model.beans.Rg;
 
 public class FiliadoValidator implements Validator<Filiado> {
     public boolean validate(Filiado obj) {

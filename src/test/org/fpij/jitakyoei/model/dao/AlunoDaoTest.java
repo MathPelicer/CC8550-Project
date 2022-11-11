@@ -124,6 +124,15 @@ public class AlunoDaoTest {
 	}
 
 	@Test
+	public void testSaveAlunoFailed() throws Exception {
+		clearDatabase();
+
+		aluno.getEntidade().setCnpj("");
+		boolean isSaved = alunoDao.save(aluno);
+		assertEquals(false, isSaved);
+	}
+
+	@Test
 	public void updateAluno() throws Exception {
 		clearDatabase();
 		assertEquals(0, alunoDao.list().size());
