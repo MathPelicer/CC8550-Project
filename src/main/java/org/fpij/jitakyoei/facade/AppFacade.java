@@ -16,7 +16,7 @@ public interface AppFacade {
 
 	public abstract void listAlunos();
 
-	public abstract void createProfessor(Professor professor);
+	public abstract boolean createProfessor(Professor professor);
 
 	public abstract void updateProfessor(Professor professor);
 

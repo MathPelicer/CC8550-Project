@@ -80,13 +80,15 @@ public class AppFacadeImpl implements AppFacade {
 	}
 
 	@Override
-	public void createProfessor(Professor professor) {
+	public boolean createProfessor(Professor professor) {
 		try {
-			professorBO.createProfessor(professor);
+			boolean isCreated = professorBO.createProfessor(professor);
+			return isCreated;
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			reportException(e);
 		}
+		return false;
 	}
 
 	@Override
