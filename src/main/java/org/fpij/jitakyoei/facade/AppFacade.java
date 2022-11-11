@@ -24,7 +24,7 @@ public interface AppFacade {
 
 	public abstract List<Professor> listProfessores();
 
-	public abstract void createEntidade(Entidade entidade);
+	public abstract boolean createEntidade(Entidade entidade);
 
 	public abstract void updateEntidade(Entidade entidade);
 

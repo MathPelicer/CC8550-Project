@@ -45,8 +45,12 @@ public class EntidadeCadastrarView implements ViewComponent {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			try {
-				facade.createEntidade(entidadeForm.getEntidade());
-				JOptionPane.showMessageDialog(gui, "Entidade cadastrada com sucesso!");
+				boolean isCreated = facade.createEntidade(entidadeForm.getEntidade());
+				if (!isCreated) {
+					JOptionPane.showMessageDialog(gui, "A entidade não foi cadastrada");
+				} else {
+					JOptionPane.showMessageDialog(gui, "Entidade cadastrada com sucesso!");
+				}
 				parent.removeTabPanel(gui);
 			} catch (Exception e) {
 				e.printStackTrace();

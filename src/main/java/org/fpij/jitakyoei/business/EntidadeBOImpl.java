@@ -5,12 +5,14 @@ import java.util.List;
 import org.fpij.jitakyoei.model.beans.Entidade;
 import org.fpij.jitakyoei.model.dao.DAO;
 import org.fpij.jitakyoei.model.dao.DAOImpl;
+import org.fpij.jitakyoei.model.validator.EntidadeValidator;
 import org.fpij.jitakyoei.view.AppView;
 
 public class EntidadeBOImpl implements EntidadeBO {
 
 	private AppView view;
-	private static DAO<Entidade> dao = new DAOImpl<Entidade>(Entidade.class);
+	private static EntidadeValidator entidadeValidator = new EntidadeValidator();
+	private static DAO<Entidade> dao = new DAOImpl<Entidade>(Entidade.class, entidadeValidator, true);
 
 	public EntidadeBOImpl(AppView view) {
 		this.view = view;
@@ -21,11 +23,12 @@ public class EntidadeBOImpl implements EntidadeBO {
 	}
 
 	@Override
-	public void createEntidade(Entidade entidade) throws Exception {
+	public boolean createEntidade(Entidade entidade) throws Exception {
 		System.out.println("EntidadeBOImpl.createEntidade()");
 		try {
-			dao.save(entidade);
+			boolean isSaved = dao.save(entidade);
 			fireModelChangeEvent(entidade);
+			return isSaved;
 		} catch (IllegalArgumentException e) {
 			throw new IllegalArgumentException("Ocorreu um erro ao cadastrar a entidade!"
 					+ " Verifique se todos os dados foram preenchidos corretamente.");
