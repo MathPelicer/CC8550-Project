@@ -2,14 +2,19 @@ package org.fpij.jitakyoei.model.dao;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.fpij.jitakyoei.model.beans.Aluno;
 import org.fpij.jitakyoei.model.beans.Endereco;
 import org.fpij.jitakyoei.model.beans.Entidade;
+import org.fpij.jitakyoei.model.beans.Faixa;
 import org.fpij.jitakyoei.model.beans.Filiado;
 import org.fpij.jitakyoei.model.beans.Professor;
+import org.fpij.jitakyoei.model.beans.Rg;
+import org.fpij.jitakyoei.model.validator.AlunoValidator;
+import org.fpij.jitakyoei.util.CorFaixa;
 import org.fpij.jitakyoei.util.DatabaseManager;
 import org.junit.AfterClass;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,18 +27,22 @@ public class AlunoDaoTest {
 	private static Entidade entidade;
 	private static Endereco endereco;
 	private static Filiado f1;
+	private static Rg rg;
 	private static Filiado filiadoProf;
 	private static Professor professor;
+	private static AlunoValidator alunoValidator;
+	private static Faixa faixa;
 
 	@BeforeAll
 	public static void setUp() {
 		DatabaseManager.setEnviroment(DatabaseManager.TEST);
-		f1 = new Filiado();
-		f1.setNome("Aécio");
-		f1.setCpf("036.464.453-27");
-		f1.setDataNascimento(new Date());
-		f1.setDataCadastro(new Date());
-		f1.setId(1332L);
+		rg = new Rg();
+		rg.setNumero("1234567");
+		rg.setOrgaoExpedidor("ssp");
+
+		faixa = new Faixa();
+		faixa.setCor(CorFaixa.BRANCA);
+		faixa.setDataEntrega(new Date());
 
 		endereco = new Endereco();
 		endereco.setBairro("Dirceu");
@@ -41,6 +50,24 @@ public class AlunoDaoTest {
 		endereco.setCidade("Teresina");
 		endereco.setEstado("PI");
 		endereco.setRua("Rua Des. Berilo Mota");
+		endereco.setNumero("100");
+
+		f1 = new Filiado();
+		f1.setNome("Aécio");
+		f1.setCpf("036.464.453-27");
+		f1.setDataNascimento(new Date());
+		f1.setDataCadastro(new Date());
+		f1.setId(1332L);
+		f1.setRegistroCbj("registro 1");
+		f1.setTelefone1("12345678");
+		f1.setTelefone2("87654321");
+		f1.setEmail("aecio@gmail.com");
+		f1.setRg(rg);
+		f1.setObservacoes("observacoes");
+		List<Faixa> faixas = new ArrayList<Faixa>();
+		faixas.add(faixa);
+		f1.setFaixas(faixas);
+		f1.setEndereco(endereco);
 
 		filiadoProf = new Filiado();
 		filiadoProf.setNome("Professor");
@@ -55,15 +82,18 @@ public class AlunoDaoTest {
 
 		entidade = new Entidade();
 		entidade.setEndereco(endereco);
+		entidade.setCnpj("12345678910");
 		entidade.setNome("Academia 1");
 		entidade.setTelefone1("(086)1234-5432");
+		entidade.setTelefone2("(086)1234-5432");
 
 		aluno = new Aluno();
 		aluno.setFiliado(f1);
 		aluno.setProfessor(professor);
 		aluno.setEntidade(entidade);
 
-		alunoDao = new DAOImpl<Aluno>(Aluno.class);
+		alunoValidator = new AlunoValidator();
+		alunoDao = new DAOImpl<Aluno>(Aluno.class, alunoValidator, true);
 	}
 
 	public static void clearDatabase() {
@@ -83,6 +113,14 @@ public class AlunoDaoTest {
 		assertEquals("Aécio", alunoDao.get(aluno).getFiliado().getNome());
 		assertEquals("Professor", alunoDao.get(aluno).getProfessor().getFiliado().getNome());
 		assertEquals("Dirceu", alunoDao.get(aluno).getProfessor().getFiliado().getEndereco().getBairro());
+	}
+
+	@Test
+	public void testSaveAlunoSuccess() throws Exception {
+		clearDatabase();
+
+		boolean isSaved = alunoDao.save(aluno);
+		assertEquals(true, isSaved);
 	}
 
 	@Test
