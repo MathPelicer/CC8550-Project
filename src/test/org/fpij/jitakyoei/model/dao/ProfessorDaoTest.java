@@ -85,7 +85,7 @@ public class ProfessorDaoTest {
         entidade.setTelefone2("(086)1234-5432");
 
         professor = new Professor();
-        professor.setFiliado(filiadoProf);
+        professor.setFiliado(f1);
         List<Entidade> entidades = new ArrayList<Entidade>();
         entidades.add(entidade);
         professor.setEntidades(entidades);
@@ -123,6 +123,16 @@ public class ProfessorDaoTest {
 
         boolean isSaved = professorDao.save(professor);
         assertEquals(true, isSaved);
+    }
+
+    @Test
+    public void testSaveProfessorNoName() throws Exception {
+        clearDatabase();
+
+        professor.getFiliado().setNome("");
+        boolean isSaved = professorDao.save(professor);
+
+        assertEquals(false, isSaved);
     }
 
     @Test
