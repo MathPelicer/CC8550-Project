@@ -123,12 +123,14 @@ public class AppFacadeImpl implements AppFacade {
 	}
 
 	@Override
-	public void createEntidade(Entidade entidade) {
+	public boolean createEntidade(Entidade entidade) {
 		try {
-			entidadeBO.createEntidade(entidade);
+			boolean isCreated = entidadeBO.createEntidade(entidade);
+			return isCreated;
 		} catch (Exception e) {
 			reportException(e);
 		}
+		return false;
 	}
 
 	@Override

@@ -5,7 +5,7 @@ import java.util.List;
 import org.fpij.jitakyoei.model.beans.Entidade;
 
 public interface EntidadeBO {
-	public void createEntidade(Entidade entidade) throws Exception;
+	public boolean createEntidade(Entidade entidade) throws Exception;
 
 	public void updateEntidade(Entidade entidade) throws Exception;
 
