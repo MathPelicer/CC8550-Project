@@ -59,9 +59,10 @@ public class ProfessorCadastrarView implements ViewComponent {
 				if (isProfessorCreated) {
 					facade.createProfessorEntidade(relacionamentos);
 					JOptionPane.showMessageDialog(gui, "Professor cadastrado com sucesso!");
-					parent.removeTabPanel(gui);
+				} else {
+					JOptionPane.showMessageDialog(gui, "Houve um problema ao cadastrar o professor");
 				}
-				JOptionPane.showMessageDialog(gui, "Houve um problema ao cadastrar o professor");
+				parent.removeTabPanel(gui);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
