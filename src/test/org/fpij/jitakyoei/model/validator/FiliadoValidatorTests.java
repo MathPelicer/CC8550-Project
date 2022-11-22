@@ -82,4 +82,12 @@ public class FiliadoValidatorTests {
         boolean isValid = filiadoValidator.validate(f1);
         assertFalse(isValid);
     }
+
+    @Test
+    public void testFiliadoValidatorFaixaEmpty() throws Exception {
+        f1.getFaixas().clear();
+
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
 }
