@@ -51,12 +51,14 @@ public class AppFacadeImpl implements AppFacade {
 	}
 
 	@Override
-	public void updateAluno(Aluno aluno) {
+	public boolean updateAluno(Aluno aluno) {
 		try {
-			alunoBO.updateAluno(aluno);
+			boolean isUpdated = alunoBO.updateAluno(aluno);
+			return isUpdated;
 		} catch (Exception e) {
 			reportException(e);
 		}
+		return false;
 	}
 
 	@Override

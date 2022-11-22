@@ -46,8 +46,12 @@ public class AlunoAtualizarView implements ViewComponent {
 		public void actionPerformed(ActionEvent arg0) {
 			Aluno aluno = alunoForm.getAluno();
 			try {
-				facade.updateAluno(aluno);
-				JOptionPane.showMessageDialog(gui, "Aluno atualizado com sucesso!");
+				boolean isUpdated = facade.updateAluno(aluno);
+				if (isUpdated) {
+					JOptionPane.showMessageDialog(gui, "Aluno atualizado com sucesso!");
+				} else {
+					JOptionPane.showMessageDialog(gui, "Aluno não foi atualizado!");
+				}
 				parent.removeTabPanel(gui);
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -7,7 +7,7 @@ import org.fpij.jitakyoei.model.beans.Aluno;
 public interface AlunoBO {
 	public boolean createAluno(Aluno aluno) throws Exception;
 
-	public void updateAluno(Aluno aluno) throws Exception;
+	public boolean updateAluno(Aluno aluno) throws Exception;
 
 	public List<Aluno> searchAluno(Aluno aluno) throws Exception;
 

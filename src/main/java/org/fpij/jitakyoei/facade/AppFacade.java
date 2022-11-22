@@ -10,7 +10,7 @@ import org.fpij.jitakyoei.model.beans.ProfessorEntidade;
 public interface AppFacade {
 	public abstract boolean createAluno(Aluno aluno);
 
-	public abstract void updateAluno(Aluno aluno);
+	public abstract boolean updateAluno(Aluno aluno);
 
 	public abstract List<Aluno> searchAluno(Aluno aluno);
 

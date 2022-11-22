@@ -50,7 +50,7 @@ public class Aluno {
 	}
 
 	public void copyProperties(Aluno other) {
-		this.filiado.copyProperties(other.getFiliado());
+		this.filiado = other.getFiliado();
 		this.entidade = other.getEntidade();
 		this.professor = other.getProfessor();
 	}

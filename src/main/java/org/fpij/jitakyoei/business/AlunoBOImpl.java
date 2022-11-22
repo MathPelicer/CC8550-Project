@@ -46,14 +46,15 @@ public class AlunoBOImpl implements AlunoBO {
 	}
 
 	@Override
-	public void updateAluno(Aluno aluno) throws Exception {
+	public boolean updateAluno(Aluno aluno) throws Exception {
 		try {
-			Aluno old = null;
-			old = dao.get(aluno);
-			if (old != null) {
-				old.copyProperties(aluno);
+
+			boolean isSaved = dao.save(aluno);
+			if (!isSaved) {
+				return false;
 			}
-			fireModelChangeEvent(old);
+			// fireModelChangeEvent(aluno);
+			return true;
 		} catch (IllegalArgumentException e) {
 			e.printStackTrace();
 			throw new IllegalArgumentException("Ocorreu um erro ao salvar os dados do aluno."
