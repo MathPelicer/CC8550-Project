@@ -5,8 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.fpij.jitakyoei.model.beans.Endereco;
 import org.fpij.jitakyoei.model.beans.Entidade;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class EntidadeValidatorTests {
     private static Entidade entidade;
@@ -14,8 +14,8 @@ public class EntidadeValidatorTests {
 
     private static EntidadeValidator entidadeValidator;
 
-    @BeforeAll
-    private static void setUp() {
+    @Before
+    public void setUp() {
         endereco = new Endereco();
         endereco.setBairro("Dirceu");
         endereco.setCep("64078-213");

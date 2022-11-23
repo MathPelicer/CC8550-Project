@@ -4,16 +4,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.fpij.jitakyoei.model.beans.Endereco;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class EnderecoValidatorTests {
     private static Endereco endereco;
     private static EnderecoValidator enderecoValidator;
 
-    @BeforeAll
-    private static void setUp() {
+    @Before
+    public void setUp() {
         endereco = new Endereco();
         endereco.setBairro("Dirceu");
         endereco.setCep("64078-213");

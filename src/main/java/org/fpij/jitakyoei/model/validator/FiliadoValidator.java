@@ -13,7 +13,7 @@ public class FiliadoValidator implements Validator<Filiado> {
         Date filiadoNascimento = obj.getDataNascimento();
         Date filiadoCadastro = obj.getDataCadastro(); // its null
         String filiadoTelefone1 = obj.getTelefone1();
-        String filiadoTelefone2 = obj.getTelefone1();
+        String filiadoTelefone2 = obj.getTelefone2();
         String filiadoEmail = obj.getEmail();
         String filiadoCpf = obj.getCpf();
         String filiadoObservacoes = obj.getObservacoes();

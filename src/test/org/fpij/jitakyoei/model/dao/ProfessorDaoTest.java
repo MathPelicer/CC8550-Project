@@ -17,9 +17,8 @@ import org.fpij.jitakyoei.model.validator.ProfessorValidator;
 import org.fpij.jitakyoei.util.CorFaixa;
 import org.fpij.jitakyoei.util.DatabaseManager;
 import org.junit.AfterClass;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ProfessorDaoTest {
     private static DAO<Professor> professorDao;
@@ -33,8 +32,8 @@ public class ProfessorDaoTest {
     private static ProfessorValidator professorValidator;
     private static Faixa faixa;
 
-    @BeforeAll
-    public static void setUp() {
+    @Before
+    public void setUp() {
         DatabaseManager.setEnviroment(DatabaseManager.TEST);
         rg = new Rg();
         rg.setNumero("1234567");

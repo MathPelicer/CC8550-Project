@@ -12,8 +12,8 @@ import org.fpij.jitakyoei.model.beans.Faixa;
 import org.fpij.jitakyoei.model.beans.Filiado;
 import org.fpij.jitakyoei.model.beans.Rg;
 import org.fpij.jitakyoei.util.CorFaixa;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 
 public class FiliadoValidatorTests {
     private static Endereco endereco;
@@ -22,8 +22,8 @@ public class FiliadoValidatorTests {
     private static Filiado f1;
     private static FiliadoValidator filiadoValidator;
 
-    @BeforeAll
-    public static void setUp() {
+    @Before
+    public void setUp() {
         rg = new Rg();
         rg.setNumero("1234567");
         rg.setOrgaoExpedidor("ssp");
