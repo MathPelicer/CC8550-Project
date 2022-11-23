@@ -90,4 +90,68 @@ public class FiliadoValidatorTests {
         boolean isValid = filiadoValidator.validate(f1);
         assertFalse(isValid);
     }
+
+    @Test
+    public void testFiliadoValidatorNomeBlank() throws Exception {
+        f1.setNome("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorDataNascimentoNull() throws Exception {
+        f1.setDataNascimento(null);
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    // @Test
+    // public void testFiliadoValidatorDataNascimentoBlank() throws Exception {
+    // f1.setDataNascimento("");
+    // boolean isValid = filiadoValidator.validate(f1);
+    // assertFalse(isValid);
+    // }
+
+    @Test
+    public void testFiliadoValidatorDataCadastroNull() throws Exception {
+        f1.setDataCadastro(null);
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorTelefone1Blank() throws Exception {
+        f1.setTelefone1("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorTelefone2Blank() throws Exception {
+        f1.setTelefone2("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorEmailBlank() throws Exception {
+        f1.setEmail("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorCpfBlank() throws Exception {
+        f1.setCpf("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
+    @Test
+    public void testFiliadoValidatorObservacoesBlank() throws Exception {
+        f1.setObservacoes("");
+        boolean isValid = filiadoValidator.validate(f1);
+        assertFalse(isValid);
+    }
+
 }
