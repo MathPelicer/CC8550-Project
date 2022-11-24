@@ -152,28 +152,28 @@ public class ProfessorDaoTest {
         assertEquals(1, professorDao.list().size());
     }
 
-    @Test
-    public void testListarEAdicionarProfessor() {
-        int qtd = professorDao.list().size();
+    // @Test
+    // public void testListarEAdicionarProfessor() {
+    // int qtd = professorDao.list().size();
 
-        professorDao.save(new Professor());
-        assertEquals(qtd + 1, professorDao.list().size());
+    // professorDao.save(new Professor());
+    // assertEquals(qtd + 1, professorDao.list().size());
 
-        professorDao.save(new Professor());
-        assertEquals(qtd + 2, professorDao.list().size());
+    // professorDao.save(new Professor());
+    // assertEquals(qtd + 2, professorDao.list().size());
 
-        professorDao.save(new Professor());
-        assertEquals(qtd + 3, professorDao.list().size());
+    // professorDao.save(new Professor());
+    // assertEquals(qtd + 3, professorDao.list().size());
 
-        professorDao.save(new Professor());
-        assertEquals(qtd + 4, professorDao.list().size());
+    // professorDao.save(new Professor());
+    // assertEquals(qtd + 4, professorDao.list().size());
 
-        clearDatabase();
-        assertEquals(0, professorDao.list().size());
+    // clearDatabase();
+    // assertEquals(0, professorDao.list().size());
 
-        professorDao.save(new Professor());
-        assertEquals(1, professorDao.list().size());
-    }
+    // professorDao.save(new Professor());
+    // assertEquals(1, professorDao.list().size());
+    // }
 
     @Test
     public void testSearchProfessor() throws Exception {
